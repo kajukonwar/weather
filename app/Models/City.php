@@ -11,7 +11,7 @@ class City extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'latitude', 'longitude'];
 
     public function country(): BelongsTo
     {

@@ -7,6 +7,7 @@ return [
             'key'  => env('FORECAST_PROVIDER_KEY', ''),
             'urls' => [
                 '5day' => env('FORECAST_PROVIDER_URL_5DAY', ''),
+                'geocoding' => env('FORECAST_PROVIDER_URL_GEOCODING', '')
             ]
         ]
     ]

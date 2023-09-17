@@ -23,6 +23,16 @@ class ForeCastService
         
         $response = Http::get($url, $this->params);
         $response->throw();
-        return $response;
+        return $response->json();
+    }
+
+    public function getGeoCoordinates($city, $country)
+    {
+        $url = $this->host.config('weather.forecast.provider.urls.geocoding');
+        $this->params['q'] = implode(",", [$city, '', $country]);
+        $this->params['limit'] = 1;
+
+        $response = Http::get($url, $this->params);
+        return $response->json();
     }
 }
