@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 100);
-            $table->unsignedInteger('country_id');
-            $table->string('latitude', 100)->default('');
-            $table->string('longitude', 100)->default('');
+            $table->string('iso3166_code', 10)->unique();
             $table->timestamps();
-            $table->foreign('country_id')
-            ->references('id')->on('countries')->onDelete('restrict');
         });
     }
 
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('countries');
     }
 };
