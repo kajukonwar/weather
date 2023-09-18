@@ -4,7 +4,7 @@
  - For this task, docker containers using Laravel Sail was used in local dev environment
 2. Clone the repo
 3. Run "composer install" command
-4. Fill the values in .env file. If file is already not present, then copy the contents of .env.example and create the new file in the same directory 
+4. Fill the values in .env file. If file is  not present, then copy the contents of .env.example and create the new file with that content in the same directory 
 4. Run "php artisan migrate" command to generate the Database tables
 5. There are 2 apis
  - 1. To create a city, use the below
