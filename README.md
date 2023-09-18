@@ -19,6 +19,8 @@
     curl --location --request GET 'http://localhost/api/forecast?city_id=1' \
     --header 'Accept: application/json' \
     --header 'Content-Type: application/json'
+6. To run the test cases, first create a file named .env.testing and copy/paste contents from .env. Update the environment values accordingly. Then run "php artisan test" command
+
 
 
 ## Possible Improvements
