@@ -54,12 +54,13 @@ class CityTest extends TestCase
             ]);
     }
 
-    public function test_city_creation_error_200(): void
+    public function test_city_creation_success(): void
     {
         $payload = ['name' => 'London', 'country' => 'GB'];
         $response = $this->postJson($this->url, $payload);
         $response->assertStatus(200)
             ->assertJsonStructure([
+                'id',
                 'city',
                 'latitude',
                 'longitude',

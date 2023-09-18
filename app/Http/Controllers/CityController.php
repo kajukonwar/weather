@@ -38,6 +38,7 @@ class CityController extends Controller
         );
         $country->cities()->save($city);
         return response()->json([
+            'id' => $city->id,
             'city' => $city->name,
             'latitude' => $city->latitude,
             'longitude' => $city->longitude,
