@@ -22,7 +22,10 @@ class ForeCastService
         $this->params['lon'] = $lon;
         
         $response = Http::get($url, $this->params);
-        $response->throw();
+        if ($response->clientError()) {
+            return [];
+        }
+        $response->throwUnlessStatus(200);
         return $response->json();
     }
 
@@ -33,6 +36,7 @@ class ForeCastService
         $this->params['limit'] = 1;
 
         $response = Http::get($url, $this->params);
+        $response->throwUnlessStatus(200);
         return $response->json();
     }
 }
