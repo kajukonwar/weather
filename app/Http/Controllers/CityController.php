@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -24,7 +23,12 @@ class CityController extends Controller
             ['iso3166_code' => $validated['country']]
         );
 
-        $coordinates = $forecast->getGeoCoordinates($validated['name'], $validated['country']);
+        try {
+            $coordinates = $forecast->getGeoCoordinates($validated['name'], $validated['country']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Something went wrong.', 'error' => $e->getMessage()], 500);
+        }
+
         $city = new City(
             [
                 'name' => $validated['name'],
@@ -33,6 +37,11 @@ class CityController extends Controller
             ]
         );
         $country->cities()->save($city);
-        return response()->json(['name' => $city->name]);
+        return response()->json([
+            'city' => $city->name,
+            'latitude' => $city->latitude,
+            'longitude' => $city->longitude,
+            'country' => $validated['country']
+        ]);
     }
 }
